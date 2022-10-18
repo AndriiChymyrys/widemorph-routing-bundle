@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\EventListener\RequestListener">
+            <argument type="service" key="$matcher"
+                      id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Matcher\UrlMatcherInterface"/>
+            <tag name="kernel.event_listener" event="kernel.request" priority="35"/>
+        </service>
+
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Matcher\UrlMatcherFactory">
+            <argument type="service" key="$requestContext"
+                      id="Symfony\Component\Routing\RequestContext"/>
+            <argument type="service" key="$domainInteraction"
+                      id="WideMorph\Morph\Bundle\MorphRoutingBundle\Interaction\DomainInteractionInterface"/>
+        </service>
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Matcher\UrlMatcherFactoryInterface"
+                 alias="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Matcher\UrlMatcherFactory"/>
+
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Matcher\UrlMatcher">
+            <factory
+                    service="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Matcher\UrlMatcherFactoryInterface"
+                    method="getMatcher"/>
+        </service>
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Matcher\UrlMatcherInterface"
+                 alias="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Matcher\UrlMatcher"/>
+
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Generator\UrlGenerator">
+            <factory
+                    service="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Generator\UrlGeneratorFactoryInterface"
+                    method="getGenerator"/>
+        </service>
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Generator\UrlGeneratorInterface"
+                 alias="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Generator\UrlGenerator"/>
+    </services>
+</container>

@@ -1,0 +1,8 @@
+{
+    "name": "widemorph/morph-routing-bundle",
+    "autoload": {
+        "psr-4": {
+            "WideMorph\\Morph\\Bundle\\MorphRoutingBundle\\": ""
+        }
+    }
+}

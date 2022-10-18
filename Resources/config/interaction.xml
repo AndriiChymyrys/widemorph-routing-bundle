@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Interaction\DomainInteraction">
+            <argument type="service" key="$routerProviderRegistry"
+                      id="WideMorph\Morph\Bundle\MorphRoutingBundle\Domain\Router\RouterProviderRegistryInterface"/>
+        </service>
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Interaction\DomainInteractionInterface"
+                 alias="WideMorph\Morph\Bundle\MorphRoutingBundle\Interaction\DomainInteraction"/>
+
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Interaction\InfrastructureInteraction">
+            <argument type="service" key="$generator"
+                      id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Generator\UrlGeneratorInterface"/>
+            <argument type="service" key="$matcher"
+                      id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Matcher\UrlMatcherInterface"/>
+        </service>
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Interaction\InfrastructureInteractionInterface"
+                 alias="WideMorph\Morph\Bundle\MorphRoutingBundle\Interaction\InfrastructureInteraction"/>
+    </services>
+</container>
