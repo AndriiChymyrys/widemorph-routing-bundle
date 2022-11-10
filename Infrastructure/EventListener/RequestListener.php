@@ -35,23 +35,10 @@ class RequestListener
 
         try {
             $parameters = $this->matcher->matchRequest($request);
-            $this->addAttributes($request, $parameters);
+            $request->attributes->add($parameters);
         } catch (NoConfigurationException|ResourceNotFoundException) {
             // allow request proceed to next listener
             return;
-        }
-    }
-
-    /**
-     * @param Request $request
-     * @param array $parameters
-     *
-     * @return void
-     */
-    protected function addAttributes(Request $request, array $parameters): void
-    {
-        foreach ($parameters as $parameter => $value) {
-            $request->attributes->set($parameter, $value);
         }
     }
 }

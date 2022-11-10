@@ -22,7 +22,7 @@ interface RouterProviderRegistryInterface
     public function addProvider(RouterProviderInterface $routerProvider): void;
 
     /**
-     * @return array
+     * @return array<RouterProviderInterface>
      */
     public function getProviders(): array;
 

@@ -35,5 +35,11 @@
         </service>
         <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Generator\UrlGeneratorInterface"
                  alias="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Generator\UrlGenerator"/>
+
+        <service id="WideMorph\Morph\Bundle\MorphRoutingBundle\Infrastructure\Command\RouterDebugCommand">
+            <argument type="service" key="$domainInteraction"
+                      id="WideMorph\Morph\Bundle\MorphRoutingBundle\Interaction\DomainInteractionInterface"/>
+            <tag name="console.command"/>
+        </service>
     </services>
 </container>
